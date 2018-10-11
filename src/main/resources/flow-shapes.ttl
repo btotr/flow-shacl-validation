@@ -1,0 +1,46 @@
+
+@prefix : <http://flow.recipes/0.1#> .
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+
+:Instruction a owl:Class,  sh:NodeShape ;
+        sh:property     [
+            a            sh:PropertyShape ;
+            sh:datatype  xsd:string ;
+            sh:maxCount  1 ;
+            sh:nodeKind  sh:Literal ;
+            sh:path      :directions ;
+        ] ;
+        sh:property     [
+            a            sh:PropertyShape ;
+            sh:minCount  1 ;
+            sh:maxCount  1 ;
+            sh:path      :hasMethod ;
+        ] ;
+        sh:property     [
+            a            sh:PropertyShape ;
+            sh:maxCount  1 ;
+            sh:path      :hasInstruction ;
+        ] . 
+
+# note will note work on blank notes as currently used in the recipes        
+:ComponentUnit a owl:Class,  sh:NodeShape ;
+        sh:property     [
+            a            sh:PropertyShape ;
+            sh:minCount  1 ;
+            sh:maxCount  1 ;
+            sh:path      :hasComponent ;
+        ] ; 
+        sh:property     [
+            a            sh:PropertyShape ;
+            sh:maxCount  1 ;
+            sh:path      :weight ;
+        ] ;
+        sh:property     [
+            a            sh:PropertyShape ;
+            sh:maxCount  1 ;
+            sh:path      :componentAddition ;
+        ] ;

@@ -1,0 +1,813 @@
+@prefix : <http://flow.recipes/0.1#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix grddl: <http://www.w3.org/2003/g/data-view#> .
+@prefix recipe: <http://schema.org/Recipe#> .
+@base <http://www.w3.org/2002/07/owl#> .
+
+
+<http://flow.recipes/0.1> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+:hasMethode rdf:type owl:ObjectProperty ,
+                       owl:FunctionalProperty ;
+    rdfs:domain :Instruction ;
+    rdfs:range :Method ;
+    rdfs:label "hasDirection"@en .
+
+:hasCase rdf:type owl:ObjectProperty ;
+    rdfs:domain [ rdf:type owl:Class ;
+                    owl:unionOf ( :Case :Instruction )
+                ] ;
+    rdfs:range :Case .
+
+:hasComponent rdf:type owl:ObjectProperty ;
+    rdfs:domain :ComponentUnit ;
+    rdfs:range :Component .
+
+:hasComponentUnit rdf:type owl:ObjectProperty ;
+    rdfs:domain :Instruction ;
+    rdfs:range :ComponentUnit .
+
+:hasInstruction rdf:type owl:ObjectProperty ;
+    rdfs:domain [ rdf:type owl:Class ;
+                    owl:unionOf ( :Case :Instruction )
+                ] ;
+    rdfs:range :Instruction .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+:componentAddition rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain :ComponentUnit ;
+    rdfs:range xsd:string .
+
+:directions rdf:type owl:DatatypeProperty ,
+                     owl:FunctionalProperty ;
+    rdfs:domain :Instruction ;
+    rdfs:range xsd:string .
+
+:weight rdf:type owl:DatatypeProperty ,
+                 owl:FunctionalProperty ;
+    rdfs:domain :ComponentUnit ;
+    rdfs:range xsd:integer .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+:Case rdf:type owl:Class .
+
+:Component rdf:type owl:Class .
+
+:Ingredient rdf:type owl:Class ;
+            rdfs:subClassOf :Component .
+
+:Recipe rdf:type owl:Class;
+        rdfs:subClassOf :Component ;
+        owl:equivalentClass <http://schema.org/Recipe#> .
+
+:ComponentUnit rdf:type owl:Class .
+
+:Instruction rdf:type owl:Class .
+
+:Method rdf:type owl:Class .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/created
+dct:created rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/modified
+dct:modified rdf:type owl:AnnotationProperty .
+
+
+###  http://schema.org/fiberContent
+<http://schema.org/fiberContent> rdf:type owl:AnnotationProperty .
+
+
+###  http://schema.org/video
+<http://schema.org/video> rdf:type owl:AnnotationProperty ;
+                          dct:created "2018-09-10T08:50:45.763Z"^^xsd:dateTime .
+
+
+###  http://www.purl.org/dc/terms/title
+<http://www.purl.org/dc/terms/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#broadMatch
+skos:broadMatch rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#broader
+skos:broader rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#hasTopConcept
+skos:hasTopConcept rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#member
+skos:member rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#related
+skos:related rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#topConceptOf
+skos:topConceptOf rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://flow.recipes/0.1#Ingredient
+:Ingredient owl:equivalentClass [ rdf:type owl:Restriction ;
+                                  owl:onProperty skos:inScheme ;
+                                  owl:hasValue :ingredientsSchema
+                                ] .
+
+
+###  http://flow.recipes/0.1#Method
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://dbpedia.org/resource/Salt
+<http://dbpedia.org/resource/Salt> rdf:type owl:NamedIndividual ;
+                                   owl:sameAs :salt .
+
+
+###  http://flow.recipes/0.1#ahornsiroop
+:ahornsiroop rdf:type owl:NamedIndividual ,
+                      skos:Concept ;
+             dct:created "2018-09-10T08:19:36.485Z"^^xsd:dateTime ;
+             dct:modified "2018-09-13T08:46:28.896Z"^^xsd:dateTime ;
+             skos:broader :c_7c29a65f ;
+             skos:inScheme :ingredientsSchema ;
+             skos:prefLabel "ahornsiroop"@nl .
+
+
+###  http://flow.recipes/0.1#barderen
+:barderen rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          dct:created "2018-09-10T08:10:19.127Z"^^xsd:dateTime ;
+          dct:modified "2018-09-18T07:08:43.118Z"^^xsd:dateTime ;
+          <http://schema.org/video> "https://www.youtube.com/watch?v=CG2YGxEZPQY"@nl ;
+          skos:broader :bereiden ;
+          skos:definition "techniek waarbij vlees wordt ingepakt met spek alvorens het snel en door middel van droge hitte wordt gebraden"@nl ;
+          skos:inScheme :methodesScheme ;
+          skos:prefLabel "barderen"@nl .
+
+
+###  http://flow.recipes/0.1#beat
+:beat rdf:type owl:NamedIndividual ,
+               skos:Concept ;
+      dct:modified "2018-09-18T09:35:19.273Z"^^xsd:dateTime ;
+      skos:broader :bereiden ,
+                   :c_cae54a82 ;
+      skos:inScheme :methodesScheme ;
+      skos:prefLabel "beat"@en ,
+                     "kloppen"@nl .
+
+
+###  http://flow.recipes/0.1#bereiden
+:bereiden rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          dct:created "2018-09-13T08:26:58.792Z"^^xsd:dateTime ;
+          dct:modified "2018-09-18T07:19:18.649Z"^^xsd:dateTime ;
+          skos:altLabel "maaltijd bereiden"@nl ;
+          skos:inScheme :methodesScheme ;
+          skos:prefLabel "koken"@nl ;
+          skos:topConceptOf :methodesScheme .
+
+
+###  http://flow.recipes/0.1#blancheren
+:blancheren rdf:type owl:NamedIndividual ,
+                     skos:Concept ;
+            dct:created "2018-09-10T08:11:40.875Z"^^xsd:dateTime ;
+            dct:modified "2018-09-13T10:23:03.796Z"^^xsd:dateTime ;
+            skos:broader :koken ;
+            skos:definition "Blancheren is een kooktechniek waarbij voedsel, meestal groente of fruit, een korte tijd wordt gekookt waarna het in koud water wordt gelegd of door koud water wordt afgespoeld zodat het kookproces wordt onderbroken. Blancheren gebeurt altijd zonder deksel."@nl ;
+            skos:inScheme :methodesScheme ;
+            skos:prefLabel "blancheren"@nl .
+
+
+###  http://flow.recipes/0.1#c_04f7c8f7
+:c_04f7c8f7 rdf:type owl:NamedIndividual ,
+                     skos:Concept ;
+            dct:created "2018-09-18T09:29:43.063Z"^^xsd:dateTime ;
+            dct:modified "2018-09-18T09:32:22.303Z"^^xsd:dateTime ;
+            skos:definition "Conserveren is het verduurzamen en in goede conditie bewaren van objecten, organismen, levensmiddelen, geneesmiddelen of andere zaken"@nl ;
+            skos:inScheme :methodesScheme ;
+            skos:prefLabel "conserveren"@nl ;
+            skos:topConceptOf :methodesScheme .
+
+
+###  http://flow.recipes/0.1#c_7c29a65f
+:c_7c29a65f rdf:type owl:NamedIndividual ,
+                     skos:Concept ;
+            dct:created "2018-09-11T12:40:03.685Z"^^xsd:dateTime ;
+            skos:inScheme :ingredientsSchema ;
+            skos:prefLabel "ingredient"@nl ;
+            skos:topConceptOf :ingredientsSchema .
+
+
+###  http://flow.recipes/0.1#c_c27250ec
+:c_c27250ec rdf:type owl:NamedIndividual ,
+                     skos:Concept ;
+            dct:created "2018-09-18T09:33:08.075Z"^^xsd:dateTime ;
+            dct:modified "2018-09-18T09:33:46.195Z"^^xsd:dateTime ;
+            skos:broader :c_04f7c8f7 ;
+            skos:definition """
+Fermentatie is de omzetting van stoffen met behulp van bacteriën, celculturen of schimmels."""@nl ;
+            skos:inScheme :methodesScheme ;
+            skos:prefLabel "fermentatie"@nl .
+
+
+###  http://flow.recipes/0.1#c_cae54a82
+:c_cae54a82 rdf:type owl:NamedIndividual ,
+                     skos:Concept ;
+            dct:created "2018-09-18T09:21:01.879Z"^^xsd:dateTime ;
+            dct:modified "2018-09-18T09:27:24.905Z"^^xsd:dateTime ;
+            skos:definition """
+deeg, be­slag gaar en eet­baar ma­ken door het (meest­al in een vorm of pan) in een sterk ver­hit­te oven of op een heet vuur te zet­ten"""@nl ;
+            skos:inScheme :methodesScheme ;
+            skos:prefLabel "bakken"@nl ;
+            skos:topConceptOf :methodesScheme .
+
+
+###  http://flow.recipes/0.1#c_ef0afd9d
+:c_ef0afd9d rdf:type owl:NamedIndividual ,
+                     skos:Concept ;
+            dct:created "2018-09-25T09:21:27.898Z"^^xsd:dateTime ;
+            dct:modified "2018-09-25T09:22:27.163Z"^^xsd:dateTime ;
+            skos:broader :mustard ;
+            skos:inScheme :ingredientsSchema ,
+                          :methodesScheme ;
+            skos:prefLabel "wokken"@nl ;
+            skos:topConceptOf :methodesScheme .
+
+
+###  http://flow.recipes/0.1#cayennePepper
+:cayennePepper rdf:type owl:NamedIndividual ,
+                        skos:Concept ;
+               dct:modified "2018-09-13T08:53:53.714Z"^^xsd:dateTime ;
+               skos:broader :pepper ;
+               skos:inScheme :ingredientsSchema ;
+               skos:prefLabel "Cayenne pepper"@en ,
+                              "cayennepeper"@nl .
+
+
+###  http://flow.recipes/0.1#chickPea
+:chickPea rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          dct:modified "2018-09-13T08:42:26.859Z"^^xsd:dateTime ;
+          <http://schema.org/fiberContent> "17.0"^^xsd:double ;
+          skos:broader :c_7c29a65f ;
+          skos:inScheme :ingredientsSchema ;
+          skos:prefLabel "chick pea"@en ,
+                         "kikkererwten"@nl .
+
+
+###  http://flow.recipes/0.1#drogen
+:drogen rdf:type owl:NamedIndividual ,
+                 skos:Concept ;
+        dct:created "2018-09-10T08:13:33.908Z"^^xsd:dateTime ;
+        dct:modified "2018-09-18T09:34:31.495Z"^^xsd:dateTime ;
+        skos:broader :c_04f7c8f7 ;
+        skos:inScheme :methodesScheme ;
+        skos:prefLabel "drogen"@nl .
+
+
+###  http://flow.recipes/0.1#drop
+:drop rdf:type owl:NamedIndividual ,
+               skos:Concept ;
+      dct:modified "2018-09-13T08:54:39.181Z"^^xsd:dateTime ;
+      skos:broader :beat ;
+      skos:inScheme :methodesScheme ;
+      skos:prefLabel "drop"@en ,
+                     "loskloppen"@nl .
+
+
+###  http://flow.recipes/0.1#egg
+:egg rdf:type owl:NamedIndividual ,
+              skos:Concept ;
+     dct:modified "2018-09-13T08:41:13.591Z"^^xsd:dateTime ;
+     skos:broader :c_7c29a65f ;
+     skos:inScheme :ingredientsSchema ;
+     skos:prefLabel "egg"@en ,
+                    "ei"@nl .
+
+
+###  http://flow.recipes/0.1#frituren
+:frituren rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          dct:created "2018-09-10T08:13:48.394Z"^^xsd:dateTime ;
+          dct:modified "2018-09-13T10:37:22.351Z"^^xsd:dateTime ;
+          skos:broader :bereiden ;
+          skos:inScheme :methodesScheme ;
+          skos:prefLabel "frituren"@nl .
+
+
+###  http://flow.recipes/0.1#fruiten
+:fruiten rdf:type owl:NamedIndividual ,
+                  skos:Concept ;
+         dct:created "2018-09-10T08:14:04.136Z"^^xsd:dateTime ;
+         dct:modified "2018-09-19T08:30:45.988Z"^^xsd:dateTime ;
+         skos:broader :bereiden ;
+         skos:inScheme :methodesScheme ;
+         skos:prefLabel "fruiten"@en ,
+                        "fruiten"@nl .
+
+
+###  http://flow.recipes/0.1#ganzevet
+:ganzevet rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          dct:created "2018-09-10T08:18:47.040Z"^^xsd:dateTime ;
+          dct:modified "2018-09-10T08:31:46.269Z"^^xsd:dateTime ;
+          skos:broadMatch : ;
+          skos:broader :vet ;
+          skos:inScheme :ingredientsSchema ;
+          skos:prefLabel "ganzevet"@nl .
+
+
+###  http://flow.recipes/0.1#garen
+:garen rdf:type owl:NamedIndividual ,
+                skos:Concept ;
+       dct:created "2018-09-10T08:09:40.438Z"^^xsd:dateTime ;
+       dct:modified "2018-09-13T10:37:29.676Z"^^xsd:dateTime ;
+       skos:broader :bereiden ;
+       skos:inScheme :methodesScheme ;
+       skos:prefLabel "garen"@nl .
+
+
+###  http://flow.recipes/0.1#glazeren
+:glazeren rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          dct:created "2018-09-10T08:14:47.246Z"^^xsd:dateTime ;
+          dct:modified "2018-09-13T08:40:13.454Z"^^xsd:dateTime ;
+          skos:broader :bereiden ;
+          skos:inScheme :methodesScheme ;
+          skos:prefLabel "glazeren"@nl .
+
+
+###  http://flow.recipes/0.1#gratineren
+:gratineren rdf:type owl:NamedIndividual ,
+                     skos:Concept ;
+            dct:created "2018-09-10T08:14:54.895Z"^^xsd:dateTime ;
+            dct:modified "2018-09-13T08:40:23.004Z"^^xsd:dateTime ;
+            skos:broader :bereiden ;
+            skos:inScheme :methodesScheme ;
+            skos:prefLabel "gratineren"@nl ;
+            skos:related :glazeren .
+
+
+###  http://flow.recipes/0.1#grind
+:grind rdf:type owl:NamedIndividual ,
+                skos:Concept ;
+       dct:modified "2018-09-13T08:39:00.511Z"^^xsd:dateTime ;
+       skos:broader :bereiden ;
+       skos:inScheme :methodesScheme ;
+       skos:prefLabel "blenden"@nl ,
+                      "grind"@en .
+
+
+###  http://flow.recipes/0.1#honing
+:honing rdf:type owl:NamedIndividual ,
+                 skos:Concept ;
+        dct:created "2018-09-10T08:19:15.235Z"^^xsd:dateTime ;
+        dct:modified "2018-09-13T08:40:49.944Z"^^xsd:dateTime ;
+        skos:broader :c_7c29a65f ;
+        skos:inScheme :ingredientsSchema ;
+        skos:prefLabel "honing"@nl .
+
+
+###  http://flow.recipes/0.1#infuseren
+:infuseren rdf:type owl:NamedIndividual ,
+                    skos:Concept ;
+           dct:created "2018-09-10T08:15:48.476Z"^^xsd:dateTime ;
+           dct:modified "2018-09-13T08:35:43.131Z"^^xsd:dateTime ;
+           skos:broader :bereiden ;
+           skos:inScheme :methodesScheme ;
+           skos:prefLabel "infuseren"@nl .
+
+
+###  http://flow.recipes/0.1#ingredientsSchema
+:ingredientsSchema rdf:type owl:NamedIndividual ,
+                            skos:ConceptScheme ;
+                   dct:modified "2018-09-19T08:15:16.051Z"^^xsd:dateTime ;
+                   <http://www.purl.org/dc/terms/title> "Flow ingredients schema" ;
+                   skos:editorialNote "Not sure if we need our own schema or leverage an existing such-as AGROVOC" ;
+                   skos:hasTopConcept :c_7c29a65f ;
+                   skos:prefLabel "ingredienten scheme"@nl .
+
+
+###  http://flow.recipes/0.1#karameliseren
+:karameliseren rdf:type owl:NamedIndividual ,
+                        skos:Concept ;
+               dct:created "2018-09-10T08:16:05.561Z"^^xsd:dateTime ;
+               dct:modified "2018-09-13T10:37:16.789Z"^^xsd:dateTime ;
+               skos:broader :bereiden ;
+               skos:inScheme :methodesScheme ;
+               skos:prefLabel "karameliseren"@nl .
+
+
+###  http://flow.recipes/0.1#koken
+:koken rdf:type owl:NamedIndividual ,
+                skos:Concept ;
+       dct:created "2018-09-10T08:11:29.803Z"^^xsd:dateTime ;
+       dct:modified "2018-09-19T08:18:07.786Z"^^xsd:dateTime ;
+       skos:broader :bereiden ;
+       skos:definition "In kokend water bij 100°C laten liggen."@nl ;
+       skos:editorialNote "Niet te verwarren met koken algemeen (het verhitten van voedsel)"@nl ;
+       skos:inScheme :methodesScheme ;
+       skos:prefLabel "koken (bereiden)"@nl .
+
+
+###  http://flow.recipes/0.1#konfijten
+:konfijten rdf:type owl:NamedIndividual ,
+                    skos:Concept ;
+           dct:created "2018-09-10T08:17:27.022Z"^^xsd:dateTime ;
+           dct:modified "2018-09-13T10:30:46.721Z"^^xsd:dateTime ;
+           skos:broader :bereiden ;
+           skos:inScheme :methodesScheme ;
+           skos:prefLabel "konfijten"@nl .
+
+
+###  http://flow.recipes/0.1#larderen
+:larderen rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          dct:created "2018-09-10T08:10:53.463Z"^^xsd:dateTime ;
+          dct:modified "2018-09-13T08:43:25.767Z"^^xsd:dateTime ;
+          skos:broader :bereiden ;
+          skos:inScheme :methodesScheme ;
+          skos:prefLabel "larderen"@nl ;
+          skos:related :barderen ,
+                       :pikeren .
+
+
+###  http://flow.recipes/0.1#lemonJuice
+:lemonJuice rdf:type owl:NamedIndividual ,
+                     skos:Concept ;
+            dct:modified "2018-09-13T08:46:48.147Z"^^xsd:dateTime ;
+            <http://schema.org/fiberContent> "2.8"^^xsd:double ;
+            skos:broader :c_7c29a65f ;
+            skos:inScheme :ingredientsSchema ;
+            skos:prefLabel "citroensap"@nl ,
+                           "lemon juice"@en .
+
+
+###  http://flow.recipes/0.1#methodesScheme
+:methodesScheme rdf:type owl:NamedIndividual ,
+                         skos:ConceptScheme ;
+                dct:modified "2018-09-19T08:14:54.482Z"^^xsd:dateTime ;
+                <http://www.purl.org/dc/terms/title> "Flow methodes schema" ;
+                skos:hasTopConcept :bereiden ,
+                                   :c_04f7c8f7 ,
+                                   :c_cae54a82 ;
+                skos:prefLabel "methodes scheme"@nl .
+
+
+###  http://flow.recipes/0.1#mix
+:mix rdf:type owl:NamedIndividual ,
+              skos:Concept ;
+     dct:modified "2018-09-18T09:30:55.780Z"^^xsd:dateTime ;
+     skos:broader :bereiden ,
+                  :c_cae54a82 ;
+     skos:inScheme :methodesScheme ;
+     skos:prefLabel "mengen"@nl ,
+                    "mix"@en .
+
+
+###  http://flow.recipes/0.1#mustard
+:mustard rdf:type owl:NamedIndividual ,
+                  skos:Concept ;
+         dct:modified "2018-09-13T08:53:58.256Z"^^xsd:dateTime ;
+         <http://schema.org/fiberContent> "3.3"^^xsd:double ;
+         skos:broader :c_7c29a65f ;
+         skos:inScheme :ingredientsSchema ;
+         skos:prefLabel "mosterd"@nl ,
+                        "mustard"@en .
+
+
+###  http://flow.recipes/0.1#oil
+:oil rdf:type owl:NamedIndividual ,
+              skos:Concept ;
+     dct:modified "2018-09-19T08:27:12.573Z"^^xsd:dateTime ;
+     skos:altLabel "plantaardige olie"@nl ;
+     skos:broadMatch :infuseren ;
+     skos:broader :c_7c29a65f ;
+     skos:inScheme :ingredientsSchema ;
+     skos:prefLabel "oil"@en ,
+                    "olie"@nl .
+
+
+###  http://flow.recipes/0.1#oliveOil
+:oliveOil rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          dct:modified "2018-09-13T08:54:07.604Z"^^xsd:dateTime ;
+          skos:broader :oil ;
+          skos:inScheme :ingredientsSchema ;
+          skos:prefLabel "olijfolie"@nl ,
+                         "olive-oil"@en .
+
+
+###  http://flow.recipes/0.1#peanutOil
+:peanutOil rdf:type owl:NamedIndividual ,
+                    skos:Concept ;
+           dct:modified "2018-09-13T08:54:13.487Z"^^xsd:dateTime ;
+           skos:broader :oil ;
+           skos:inScheme :ingredientsSchema ;
+           skos:prefLabel "arachideolie"@nl ,
+                          "peanut oil"@en .
+
+
+###  http://flow.recipes/0.1#pekelen
+:pekelen rdf:type owl:NamedIndividual ,
+                  skos:Concept ;
+         dct:created "2018-09-10T08:44:08.457Z"^^xsd:dateTime ;
+         dct:modified "2018-09-18T09:38:15.439Z"^^xsd:dateTime ;
+         skos:altLabel "zouten"@nl ;
+         skos:broader :c_04f7c8f7 ;
+         skos:definition "Pekelen is het conserveren van etenswaren door het in te leggen in zout of pekel"@nl ;
+         skos:inScheme :methodesScheme ;
+         skos:prefLabel "pekelen"@nl .
+
+
+###  http://flow.recipes/0.1#pepper
+:pepper rdf:type owl:NamedIndividual ,
+                 skos:Concept ;
+        dct:modified "2018-09-13T08:54:21.137Z"^^xsd:dateTime ;
+        skos:broader :c_7c29a65f ;
+        skos:inScheme :ingredientsSchema ;
+        skos:prefLabel "peper"@nl ,
+                       "pepper"@en .
+
+
+###  http://flow.recipes/0.1#pikeren
+:pikeren rdf:type owl:NamedIndividual ,
+                  skos:Concept ;
+         dct:created "2018-09-10T08:11:01.504Z"^^xsd:dateTime ;
+         dct:modified "2018-09-13T08:44:38.354Z"^^xsd:dateTime ;
+         skos:broader :bereiden ;
+         skos:inScheme :methodesScheme ;
+         skos:prefLabel "pikeren"@nl .
+
+
+###  http://flow.recipes/0.1#poffen
+:poffen rdf:type owl:NamedIndividual ,
+                 skos:Concept ;
+        dct:created "2018-09-10T08:07:24.098Z"^^xsd:dateTime ;
+        dct:modified "2018-09-13T08:44:46.085Z"^^xsd:dateTime ;
+        skos:broader :bereiden ;
+        skos:inScheme :methodesScheme ;
+        skos:prefLabel "poffen"@nl .
+
+
+###  http://flow.recipes/0.1#roast
+:roast rdf:type owl:NamedIndividual ,
+                skos:Concept ;
+       dct:modified "2018-09-13T08:45:08.072Z"^^xsd:dateTime ;
+       skos:broader :bereiden ;
+       skos:inScheme :methodesScheme ;
+       skos:prefLabel "roast"@en ,
+                      "roosteren"@nl .
+
+
+###  http://flow.recipes/0.1#roerbakken
+:roerbakken rdf:type owl:NamedIndividual ,
+                     skos:Concept ;
+            dct:created "2018-09-10T08:07:05.578Z"^^xsd:dateTime ;
+            dct:modified "2018-09-13T08:44:55.362Z"^^xsd:dateTime ;
+            skos:broader :bereiden ;
+            skos:inScheme :methodesScheme ;
+            skos:prefLabel "roerbakken"@nl .
+
+
+###  http://flow.recipes/0.1#salt
+:salt rdf:type owl:NamedIndividual ,
+               skos:Concept ;
+      dct:modified "2018-09-19T08:27:08.342Z"^^xsd:dateTime ;
+      skos:broadMatch :pekelen ;
+      skos:broader :c_7c29a65f ;
+      skos:inScheme :ingredientsSchema ;
+      skos:prefLabel "salt"@en ,
+                     "zout"@nl .
+
+
+###  http://flow.recipes/0.1#sesameSeed
+:sesameSeed rdf:type owl:NamedIndividual ,
+                     skos:Concept ;
+            dct:modified "2018-09-13T08:54:30.946Z"^^xsd:dateTime ;
+            <http://schema.org/fiberContent> "12.0"^^xsd:double ;
+            skos:altLabel "sesam"@nl ;
+            skos:broader :c_7c29a65f ;
+            skos:hiddenLabel "sezam"@nl ;
+            skos:inScheme :ingredientsSchema ;
+            skos:prefLabel "sesame seed"@en ,
+                           "sesamzaad"@nl .
+
+
+###  http://flow.recipes/0.1#skosCollection_23204c7a
+:skosCollection_23204c7a rdf:type owl:NamedIndividual ,
+                                  skos:Collection ;
+                         dct:created "2018-09-13T10:39:38.475Z"^^xsd:dateTime ;
+                         dct:modified "2018-09-13T10:42:42.838Z"^^xsd:dateTime ;
+                         skos:member :frituren ,
+                                     :fruiten ,
+                                     :garen ,
+                                     :gratineren ,
+                                     :karameliseren ,
+                                     :poffen ,
+                                     :roerbakken ,
+                                     :stomen ;
+                         skos:prefLabel "verhitten"@nl .
+
+
+###  http://flow.recipes/0.1#skosCollection_f4f5ba23
+:skosCollection_f4f5ba23 rdf:type owl:NamedIndividual ,
+                                  skos:Collection ;
+                         dct:created "2018-09-07T18:44:02.505Z"^^xsd:dateTime ;
+                         dct:modified "2018-09-10T09:01:28.219Z"^^xsd:dateTime ;
+                         skos:member :pepper ,
+                                     :salt ;
+                         skos:prefLabel "kruiderij"@nl ,
+                                        "seasoning"@en .
+
+
+###  http://flow.recipes/0.1#stomen
+:stomen rdf:type owl:NamedIndividual ,
+                 skos:Concept ;
+        dct:created "2018-09-10T08:09:46.173Z"^^xsd:dateTime ;
+        dct:modified "2018-09-13T08:47:20.931Z"^^xsd:dateTime ;
+        skos:broader :bereiden ;
+        skos:inScheme :methodesScheme ;
+        skos:prefLabel "stomen"@nl .
+
+
+###  http://flow.recipes/0.1#vet
+:vet rdf:type owl:NamedIndividual ,
+              skos:Concept ;
+     dct:created "2018-09-10T08:31:26.465Z"^^xsd:dateTime ;
+     dct:modified "2018-09-13T08:46:13.023Z"^^xsd:dateTime ;
+     skos:broader :c_7c29a65f ;
+     skos:inScheme :ingredientsSchema ;
+     skos:prefLabel "vet"@nl .
+
+
+###  http://flow.recipes/0.1#whey
+:whey rdf:type owl:NamedIndividual ,
+               skos:Concept ;
+      dct:modified "2018-09-13T08:48:05.545Z"^^xsd:dateTime ;
+      skos:broader :c_7c29a65f ;
+      skos:inScheme :ingredientsSchema ;
+      skos:prefLabel "wei"@nl ,
+                     "whey"@en .
+
+
+###  http://flow.recipes/0.1#konfijten_(hartig)
+: rdf:type owl:NamedIndividual ,
+           skos:Concept ;
+  dct:created "2018-09-10T08:18:02.671Z"^^xsd:dateTime ;
+  dct:modified "2018-09-19T08:31:33.120Z"^^xsd:dateTime ;
+  skos:broader :konfijten ;
+  skos:inScheme :methodesScheme ;
+  skos:prefLabel "konfijten_(hartig)"@nl .
+
+
+###  http://flow.recipes/0.1#konfijten_(zoet)
+: rdf:type owl:NamedIndividual ,
+           skos:Concept ;
+  dct:created "2018-09-10T08:18:21.806Z"^^xsd:dateTime ;
+  dct:modified "2018-09-19T08:32:02.027Z"^^xsd:dateTime ;
+  skos:broader :konfijten ;
+  skos:editorialNote "transitief test"@en ;
+  skos:inScheme :methodesScheme ;
+  skos:prefLabel "konfijten_(zoet)"@nl .
+
+
+###  Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi
+
+
+
+:hummus rdf:type owl:NamedIndividual , recipe:Recipe ;
+    rdfs:label "Hummus" ;
+    recipe:recipeInstructions :hummusRoastInstruction ;
+    recipe:prepTime "PT10M" .
+    
+### INSTRUCTIONS
+
+:hummusRoastInstruction rdf:type owl:NamedIndividual , :Instruction ;
+    :hasInstruction :hummusGrindInstruction ;
+    :hasMethod :roast;
+    :hasComponentUnit [
+        :hasComponent :sesameSeed ;
+        :weight 40 
+	] ;
+	:directions "regelmatig schudden 2"^^xsd:string  .
+
+:hummusGrindInstruction rdf:type owl:NamedIndividual , :Instruction ;
+    :hasInstruction :hummusMixInstruction ; 
+    :hasMethod :grind ;
+    :hasComponentUnit [
+	    :hasComponent :lemonJuice ;
+	    :componentAddition "½"^^xsd:string ;
+        :weight 20 
+    ] ;
+    :hasComponentUnit [
+	    :hasComponent :chickPea ;
+        :weight 250
+    ] ;
+    :hasComponentUnit [
+	    :hasComponent :cayennePepper ;
+    ] ;
+    :hasComponentUnit [
+	    :hasComponent :salt ;
+    ] .
+
+
+:hummusMixInstruction rdf:type owl:NamedIndividual , :Instruction ;
+    :hasMethod :mix ;
+    :hasComponentUnit [
+	    :hasComponent :oliveOil ;
+	    :componentAddition "x-vierge"^^xsd:string ;
+        :weight 20 
+    ].
+    
+    
+    
+:mayonnaise rdf:type owl:NamedIndividual , recipe:Recipe ;
+    rdfs:label "Mayonnaise"@nl ;
+    recipe:recipeInstructions :loskloppenInstruction ;
+    recipe:prepTime "PT5M" ;
+    owl:sameAs <http://dbpedia.org/resource/Mayonnaise> .
+    
+### INSTRUCTIONS
+
+:loskloppenInstruction rdf:type owl:NamedIndividual , :Instruction ;
+    :hasInstruction :kloppenInstruction ;
+    :hasMethod :drop ;
+    :hasComponentUnit [
+        :hasComponent :egg ;
+        :componentAddition "1"^^xsd:string ;
+        :weight 60 
+	] ;
+	:hasComponentUnit [
+        :hasComponent :mustard ;
+        :componentAddition "dijon"^^xsd:string ;
+        :weight 10 
+    ] .
+
+:kloppenInstruction rdf:type owl:NamedIndividual , :Instruction ;
+    :hasInstruction :mengenInstruction ; 
+    :hasMethod :beat ;
+    :hasComponentUnit [
+	    :hasComponent :peanutOil ;
+        :weight 200 
+    ] ;
+    :hasComponentUnit [
+	    :hasComponent :oliveOil ;
+	    :componentAddition "x-vierge"^^xsd:string ;
+        :weight 50
+    ] ;
+    :directions "In kleine delen toevoegen"^^xsd:string .
+
+:mengenInstruction rdf:type owl:NamedIndividual , :Instruction ;
+    :hasMethod :mix ;
+    :hasComponentUnit [
+        :hasComponent :lemonJuice ;
+        :componentAddition "½"^^xsd:string ;
+        :weight 20 ;
+        :weight 21
+	] ;
+    :hasComponentUnit [
+        :hasComponent :pepper ;
+	] ;
+    :hasComponentUnit [
+        :hasComponent :salt ;
+	] ;
+    :hasComponentUnit :t.
+
+:t a :ComponentUnit;
+    	:hasComponent :whey ;
+        :weight 5 .
