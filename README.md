@@ -9,7 +9,7 @@ Change src/resources/*.ttl to your own needs
 
 # usage
 
-'''
+```
 #mvn package
 #java -cp target/flow-0.0.1-SNAPSHOT.jar recipes.flow.Validation
-'''
+```
