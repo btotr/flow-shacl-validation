@@ -1,4 +1,4 @@
-#shacl validation
+# shacl validation
 
 Minimal environment to test shacl validation using topbraid and jena. 
 Change src/resources/*.ttl to your own needs
